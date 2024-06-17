@@ -29,3 +29,5 @@ jobs:
         git add iptv/GuangdongIPTV_rtp_all.m3u
         git commit -m "Sync IPTV list file"
         git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
