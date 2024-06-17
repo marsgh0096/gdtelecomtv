@@ -2,7 +2,7 @@ name: Update M3U
 on:
   # 触发条件，这里我设置的是每天UTC 00:00触发
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '1 0 * * *'
   workflow_dispatch:
 jobs:
   update:
