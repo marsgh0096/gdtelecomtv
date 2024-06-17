@@ -17,7 +17,7 @@ jobs:
     - name: Update M3U
       run: |
         #!/bin/bash
-        awk -F 'tvg-name="' '{if($0 ~ /#EXTINF/){split($2, a, "\""); if(!(a[1] in arr)){arr[a[1]]=1; print; getline; gsub("rtp://", "http://192.168.2.1:4022/udp/", $0); print}} else if($0 ~ /rtp:/ && !(/#EXTINF/ in arr)){gsub("rtp://", "http://192.168.2.1:4022/udp/", $0); print}}' GuangdongIPTV_rtp_all.m3u > temp && mv temp GuangdongIPTV_rtp_all.m3u
+          awk -F 'tvg-name="' '{if($0 ~ /#EXTINF/){split($2, a, "\""); if(!(a[1] in arr)){arr[a[1]]=1; print; getline; gsub("rtp://", "http://192.168.2.1:4022/udp/", $0); print}else{getline}} else if($0 ~ /rtp:/ && !(/#EXTINF/ in arr)){gsub("rtp://", "http://192.168.2.1:4022/udp/", $0); print}}' GuangdongIPTV_rtp_all.m3u > temp && mv temp GuangdongIPTV_rtp_all.m3u
       
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v4
