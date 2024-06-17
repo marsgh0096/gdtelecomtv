@@ -16,10 +16,11 @@ jobs:
     
     - name: Update M3U
       run: |
-         awk -F ',' '{if(!($2 in arr)){arr[$2]=1; gsub("rtp://", "http://192.168.2.1:4022/udp/", $0); print}}' GuangdongIPTV_rtp_all.m3u > temp && mv temp GuangdongIPTV_rtp_all.m3u
-    - name: Commit and Push
-      run: |
-        git config --local user.email marsgh96@gmail.com
-        git config --local user.name marsgh0096
-        git commit -am "Auto update"
-        git push
+        #!/bin/bash
+        awk -F 'tvg-name="' '{if($0 ~ /#EXTINF/){split($2, a, "\""); if(!(a[1] in arr)){arr[a[1]]=1; print; getline; gsub("rtp://", "http://192.168.2.1:4022/udp/", $0); print}} else if($0 ~ /rtp:/ && !(/#EXTINF/ in arr)){gsub("rtp://", "http://192.168.2.1:4022/udp/", $0); print}}' GuangdongIPTV_rtp_all.m3u > temp && mv temp GuangdongIPTV_rtp_all.m3u
+      
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Auto update
+        branch: main
