@@ -17,7 +17,7 @@ jobs:
       
     - name: Download file
       run: |
-        curl -L https://raw.githubusercontent.com/Tzwcard/ChinaTelecom-GuangdongIPTV-RTP-List/master/GuangdongIPTV_rtp_all.m3u -o /gdrtp.m3u
+        curl -L https://raw.githubusercontent.com/Tzwcard/ChinaTelecom-GuangdongIPTV-RTP-List/master/GuangdongIPTV_rtp_all.m3u -o iptv/GuangdongIPTV_rtp_all.m3u
        
     - name: Config git
       run: |
