@@ -1,4 +1,4 @@
-name: Sync IPTV List
+name: Sync
 
 on:
   schedule:
