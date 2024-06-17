@@ -10,13 +10,16 @@ jobs:
     steps:
     - name: Checkout codes
       uses: actions/checkout@v2
+      with:
+        repository: marsgh0096/iptv
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     
     - name: Update M3U
       run: |
          awk -F ',' '{if(!($2 in arr)){arr[$2]=1; gsub("rtp://", "http://192.168.2.1:4022/udp/", $0); print}}' GuangdongIPTV_rtp_all.m3u > temp && mv temp GuangdongIPTV_rtp_all.m3u
     - name: Commit and Push
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email marsgh96@gmail.com
+        git config --local user.name marsgh0096
         git commit -am "Auto update"
         git push
