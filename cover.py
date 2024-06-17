@@ -19,7 +19,7 @@ def process_file(input_path, output_path):
                         下一处(file.readline(), None)
                         continue
             elif line.startswith('rtp://'):
-                new_line = re.sub(r'rtp://(\d+\.\d+\.\d+\.\d+):(\d+)'，r'http://192.168.2.1:4022/udp/\1:\2', line)
+                new_line = re.sub(r'rtp://(\d+\.\d+\.\d+\.\d+):(\d+)'， r'http://192.168.2.1:4022/udp/\1:\2', line)
                 file.write(new_line)
             else:
                 file.write(line)
