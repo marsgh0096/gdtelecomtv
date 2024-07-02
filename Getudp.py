@@ -29,6 +29,6 @@ os.system("""
           git config --global user.email "marsgh96@gmail.com"
           git config --global user.name "marsgh0096"
           git add ip.txt
-          git commit -m "Update IP address"
+          git commit -m "iptv"
           git push
           """)
