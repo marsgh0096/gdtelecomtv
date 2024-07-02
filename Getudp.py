@@ -18,5 +18,4 @@ html_content = response.text
 # 通过正则在 HTML 中寻找 IP 地址，匹配IP地址可能带有的端口
 ip_address = re.findall( r'[0-9]+(?:\.[0-9]+){3}(?:\:[0-9]{1,5})?', html_content)
 
-# 打印出第一个发现的 IP 地址
-print("第一个IP地址: ", ip_address[0] if ip_address else "None")
+ip = ip_address[0]
