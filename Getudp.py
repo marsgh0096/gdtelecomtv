@@ -21,14 +21,8 @@ ip_address = re.findall( r'[0-9]+(?:\.[0-9]+){3}(?:\:[0-9]{1,5})?', html_content
 
 ip = ip_address[0]
 
-with open('ip.txt', 'w') as file:
-    file.write(ip)
+filename = "ip_address.txt"
 
-# 增加对 Git 的调用，以将文件的更改推送到仓库
-os.system("""
-          git config --global user.email "marsgh96@gmail.com"
-          git config --global user.name "marsgh0096"
-          git add ip.txt
-          git commit -m "iptv"
-          git push
-          """)
+# 将 IP 地址写入文件
+with open(filename, "w") as f:
+    f.write(ip)
