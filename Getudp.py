@@ -5,6 +5,7 @@
 
 import requests
 import re
+import os
 
 # 目标网址
 url = 'https://fofa.info/result?qbase64=IlVEUFhZIiAmJiByZWdpb249Ikh1bmFuIg%3D%3D'
