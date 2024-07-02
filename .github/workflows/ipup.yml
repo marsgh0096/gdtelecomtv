@@ -28,3 +28,11 @@ jobs:
     - name: Run script
       run: python Getudp.py
 
+    - name: change
+      run: |
+        git add ip_address.txt
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Add changes" -a || exit 0
+        git push
+
