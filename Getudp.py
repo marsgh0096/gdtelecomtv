@@ -6,7 +6,7 @@
 import requests
 import re
 
-# 您的目标网址
+# 目标网址
 url = 'https://fofa.info/result?qbase64=IlVEUFhZIiAmJiByZWdpb249Ikh1bmFuIg%3D%3D'
 
 # 发起 GET 请求
