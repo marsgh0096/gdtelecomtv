@@ -34,8 +34,5 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git commit -m "Add changes" -a || exit 0
-        git push
-        with:
-        repository: marsgh0096/iptv
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        git push https://${{secrets.PERSONAL_ACCESS_TOKEN}}@github.com/marsgh0096/iptv.git
 
