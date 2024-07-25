@@ -25,7 +25,7 @@ def update_file(filename, new_ip_port):
     updated_content = re.sub(r'(http://)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:\d+)?',f'http://{new_ip_port}', content)
 
     with open(filename, 'w') as file:
-        file。write(updated_content)
+        file.write(updated_content)
 
 
 if __name__ == "__main__":
