@@ -25,12 +25,12 @@ jobs:
     - name: Run IP update script
       run: python update_ip.py
 
-    - name: Commit and push if changed
+    - name: Commit 和 push if changed
       run: |
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
+        git config --global user.email "marsgh96@gmail.com"
+        git config --global user.name "marsgh0096"
         git add -A
         git commit -m "Automatic IP update" || exit 0
-        git push https://${{ secrets.PAT }}@github.com/${{ github.repository }}.git
+        git push https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
       env:
-        PAT: ${{ secrets.PAT }}
+        PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
