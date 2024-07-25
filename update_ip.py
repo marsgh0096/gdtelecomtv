@@ -22,7 +22,7 @@ def update_file(filename, new_ip_port):
         content = file.read()
 
     # 使用正则表达式替换URL中的IP和端口
-    updated_content = re.sub(r'(\w+://)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:\d+)?'， f'{new_ip_port}', content)
+    updated_content = re.sub(r'(\w+://)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:\d+)?',f'{new_ip_port}', content)
 
     with open(filename, 'w') as file:
         file.write(updated_content)
