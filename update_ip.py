@@ -13,7 +13,7 @@ def get_first_ip_port():
     soup = BeautifulSoup(response.text, 'html.parser')
 
     # 这里需要根据实际网页结构来定位IP和端口
-    ip_port = soup.find('span', class_='hsxa-host')。text.strip()
+    ip_port = soup.find('span', class_='hsxa-host').text.strip()
     return ip_port
 
 
