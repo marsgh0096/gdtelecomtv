@@ -30,5 +30,5 @@ def update_file(filename, new_ip_port):
 
 if __name__ == "__main__":
     ip_port = get_first_ip_port()
-    update_file('tv.m3u', ip_port)
+    update_file('cq.m3u', ip_port)
     print(f"File updated with new IP:Port - {ip_port}")
