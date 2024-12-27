@@ -8,7 +8,7 @@ import re
 import os
 
 # 目标网址
-url = 'https://fofa.info/result?qbase64=IlVEUFhZIiAmJiByZWdpb249Ikh1bmFuIg%3D%3D'
+url = 'https://en.fofa.info/result?qbase64=KHNlcnZlcj0idWRweHkiIHx8IHNlcnZlcj0iSFRTL3R2aGVhZGVuZCIgfHwgc2VydmVyPSJITVMgRG93bmxvYWQgU2VydmljZSIgfHwgYm9keT0iWkhHWFRWIiB8fCBib2R5PSIvaXB0di9saXZlL3poX2NuLmpzIikgJiYgcmVnaW9uPSJIdW5hbiI%3D&page=1&page_size=10'
 
 # 发起 GET 请求
 response = requests.get(url)
