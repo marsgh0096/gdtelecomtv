@@ -2,7 +2,7 @@ name: Sync IPTV Files
 
 on:
   schedule:
-    - cron: '0 19 * * *' # 每天UTC时间19点，对应北京时间凌晨3点
+    - cron: '0 19 * * *'  #北京时间凌晨3点
   workflow_dispatch:      # 允许手动触发
 
 jobs:
