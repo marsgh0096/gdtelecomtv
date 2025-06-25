@@ -17,7 +17,7 @@ for input_file in input_files:
             if match:
                 tvg_name = match.group(1)
                 is_ultra = ("超清" in extinf or "4K" in extinf or "超清" in url or "4K" in url)
-                url = url.replace("rtp://", "http://192.168.2.1:4022/")
+                url = url.replace("rtp://", "http://192.168.2.1:4022/udp/")
                 if tvg_name not in channel_dict:
                     channel_dict[tvg_name] = (extinf, url, is_ultra)
                 else:
