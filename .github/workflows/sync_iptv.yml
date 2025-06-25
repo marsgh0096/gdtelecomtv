@@ -20,9 +20,17 @@ jobs:
         run: |
           curl -L -o GuangdongIPTV_rtp_all.m3u https://raw.githubusercontent.com/Tzwcard/ChinaTelecom-GuangdongIPTV-RTP-List/master/GuangdongIPTV_rtp_all.m3u
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: 去重 IPTV 列表
+        run: python3 dedup_iptv.py
+
       - name: Commit and push if changed
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add GuangdongIPTV_rtp_4k.m3u GuangdongIPTV_rtp_all.m3u
-          git diff --cached --quiet || (git commit -m "自动同步IPTV列表" && git push) 
+          git add GuangdongIPTV_rtp_4k.m3u GuangdongIPTV_rtp_all.m3u GuangdongIPTV_rtp_all_dedup.m3u
+          git diff --cached --quiet || (git commit -m "自动同步并去重IPTV列表" && git push) 
