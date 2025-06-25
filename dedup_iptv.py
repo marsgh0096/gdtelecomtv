@@ -33,17 +33,14 @@ for input_file in input_files:
         else:
             i += 1
 
-# 处理去重和CAVS优先级
 result = []
 for tvg_name, items in channels.items():
-    # 先筛选不含CAVS的
     non_cavs = [item for item in items if not item["is_cavs"]]
     if non_cavs:
         # 优先超清/4K
         preferred = [item for item in non_cavs if item["is_ultra"]]
         chosen = preferred[0] if preferred else non_cavs[0]
     else:
-        # 全是CAVS，只能选CAVS的
         preferred = [item for item in items if item["is_ultra"]]
         chosen = preferred[0] if preferred else items[0]
     result.append((chosen["extinf"], chosen["url"]))
