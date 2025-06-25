@@ -1,0 +1,28 @@
+name: Sync IPTV Files
+
+on:
+  schedule:
+    - cron: '0 19 * * *' # 每天UTC时间19点，对应北京时间凌晨3点
+  workflow_dispatch:      # 允许手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
+      - name: Download GuangdongIPTV_rtp_4k.m3u
+        run: |
+          curl -L -o GuangdongIPTV_rtp_4k.m3u https://raw.githubusercontent.com/Tzwcard/ChinaTelecom-GuangdongIPTV-RTP-List/master/GuangdongIPTV_rtp_4k.m3u
+
+      - name: Download GuangdongIPTV_rtp_all.m3u
+        run: |
+          curl -L -o GuangdongIPTV_rtp_all.m3u https://raw.githubusercontent.com/Tzwcard/ChinaTelecom-GuangdongIPTV-RTP-List/master/GuangdongIPTV_rtp_all.m3u
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add GuangdongIPTV_rtp_4k.m3u GuangdongIPTV_rtp_all.m3u
+          git diff --cached --quiet || (git commit -m "自动同步IPTV列表" && git push) 
