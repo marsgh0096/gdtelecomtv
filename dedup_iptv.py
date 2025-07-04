@@ -3,7 +3,6 @@ import re
 input_files = ["GuangdongIPTV_rtp_4k.m3u", "GuangdongIPTV_rtp_all.m3u"]
 output_file = "gdiptv.m3u"
 
-# 先收集所有频道
 channels = {}
 
 for input_file in input_files:
@@ -37,7 +36,6 @@ result = []
 for tvg_name, items in channels.items():
     non_cavs = [item for item in items if not item["is_cavs"]]
     if non_cavs:
-        # 优先超清/4K
         preferred = [item for item in non_cavs if item["is_ultra"]]
         chosen = preferred[0] if preferred else non_cavs[0]
     else:
