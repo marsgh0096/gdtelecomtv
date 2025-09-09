@@ -18,9 +18,6 @@ PRODUCT_NAME = "TW-ipv6-0.3G-9"
 STATE_FILE = "notified_state.txt"
 
 def send_telegram_message(message):
-    """
-    通过Telegram机器人发送一条消息。
-    """
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
         print("错误: Telegram Token或Chat ID未在GitHub Secrets中设置。")
         return
@@ -41,9 +38,6 @@ def send_telegram_message(message):
         print(f"发送Telegram消息时发生网络异常: {e}")
 
 def check_stock_status():
-    """
-    GitHub Actions版的检查逻辑，通过文件来记录状态。
-    """
     print(f"正在检查 {PRODUCT_NAME} 的库存...")
     
     # 读出上次的通知状态
