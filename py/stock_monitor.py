@@ -5,59 +5,57 @@ import re
 from urllib.parse import urljoin
 import os
 
-# --- User Configuration (from GitHub Secrets) ---
+# --- 用户配置 (从GitHub Secrets中安全读取) ---
 TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID')
+SOCKS_PROXY_URL = os.environ.get('SOCKS_PROXY_URL') # 新增：读取SOCKS代理URL
 
-# --- Script Constants ---
+# --- 脚本常量 ---
 BASE_URL = "https://wawo.wiki/"
 PRODUCT_PAGE_URL = "https://wawo.wiki/index.php?rp=/store/tw-ipv6kvm"
 PRODUCT_NAME = "TW-ipv6-0.3G-9"
 STATE_FILE = "notified_state.txt"
 
 def send_telegram_message(message):
+    # 此函数不变，它将直连Telegram，不通过您的代理
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
-        print("Error: Telegram Token or Chat ID not set in GitHub Secrets.")
+        print("错误: Telegram Token或Chat ID未在GitHub Secrets中设置。")
         return
-        
     api_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    payload = {
-        'chat_id': TELEGRAM_CHAT_ID,
-        'text': message,
-        'parse_mode': 'HTML'
-    }
+    payload = {'chat_id': TELEGRAM_CHAT_ID, 'text': message, 'parse_mode': 'HTML'}
     try:
         response = requests.post(api_url, data=payload, timeout=15)
         if response.status_code == 200:
-            print("Telegram notification sent successfully!")
+            print("Telegram提醒消息发送成功！")
         else:
-            print(f"Failed to send Telegram notification: {response.status_code} {response.text}")
+            print(f"发送Telegram消息失败: {response.status_code} {response.text}")
     except requests.exceptions.RequestException as e:
-        print(f"Network exception while sending Telegram notification: {e}")
+        print(f"发送Telegram消息时发生网络异常: {e}")
 
 def check_stock_status():
-    print(f"Checking stock for {PRODUCT_NAME}...")
+    print(f"正在通过 SOCKS 代理检查 {PRODUCT_NAME} 的库存...")
     
-    notified_in_stock = False
-    if os.path.exists(STATE_FILE):
-        with open(STATE_FILE, 'r') as f:
-            if f.read().strip() == 'true':
-                notified_in_stock = True
+    if not SOCKS_PROXY_URL:
+        print("错误: SOCKS_PROXY_URL 未在GitHub Secrets中设置。")
+        return
+
+    # 读出上次的通知状态
+    notified_in_stock = os.path.exists(STATE_FILE) and open(STATE_FILE).read().strip() == 'true'
 
     try:
-        # **Key Change: Add more realistic browser headers**
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Referer': BASE_URL,
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'DNT': '1'
+        # --- 核心修改：配置SOCKS代理 ---
+        proxies = {
+            'http': SOCKS_PROXY_URL,
+            'https': SOCKS_PROXY_URL
         }
         
-        response = requests.get(PRODUCT_PAGE_URL, headers=headers, timeout=15)
-        response.raise_for_status() # This will raise an exception for non-200 status codes like 403
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+        }
+        
+        # 在请求中加入 proxies 参数
+        response = requests.get(PRODUCT_PAGE_URL, headers=headers, proxies=proxies, timeout=60)
+        response.raise_for_status()
         soup = BeautifulSoup(response.text, 'html.parser')
 
         product_title_element = soup.find(string=re.compile(re.escape(PRODUCT_NAME), re.I))
@@ -65,36 +63,29 @@ def check_stock_status():
         order_link_element = product_container.find('a', class_='btn-order-now') if product_container else None
 
         if not order_link_element:
-            print("Could not find the product or its order link. Check complete.")
+            print("未找到产品或订购链接，检查结束。")
             return
 
         full_order_url = urljoin(BASE_URL, order_link_element['href'])
         
         if "cart.php" in full_order_url:
             if not notified_in_stock:
-                print("Status: In Stock! Preparing to send notification...")
-                message = (f"🎉 <b>Stock Alert!</b> 🎉\n\n"
-                           f"<b>Package:</b> {PRODUCT_NAME}\n"
-                           f"<b>Status:</b> <b>In Stock!</b>\n\n"
-                           f"Purchase now!\n<a href='{full_order_url}'>Click here to order</a>")
+                print("状态：有货！准备发送通知...")
+                message = (f"🎉 <b>有货提醒!</b> 🎉\n\n<b>套餐:</b> {PRODUCT_NAME}\n<b>状态:</b> <b>有货!</b>\n\n请立即前往购买！\n<a href='{full_order_url}'>点击直达</a>")
                 send_telegram_message(message)
-                with open(STATE_FILE, 'w') as f:
-                    f.write('true')
+                with open(STATE_FILE, 'w') as f: f.write('true')
             else:
-                print("Status: Still in stock. (Notification already sent).")
+                print("状态：依然有货。(通知已发送过)")
         else:
-            print("Status: Out of Stock.")
+            print("状态：缺货。")
             if notified_in_stock:
-                print("Stock status changed from 'In Stock' to 'Out of Stock'. Resetting notification flag.")
-                with open(STATE_FILE, 'w') as f:
-                    f.write('false')
+                print("状态变更：有货 -> 缺货。重置通知开关。")
+                with open(STATE_FILE, 'w') as f: f.write('false')
 
-    except requests.exceptions.HTTPError as e:
-        print(f"HTTP Error during check: {e}") # Specifically catch and print HTTP errors like 403
     except Exception as e:
-        print(f"An unknown error occurred during check: {e}")
+        print(f"执行检查时发生未知错误: {e}")
 
 if __name__ == "__main__":
-    print("Starting single GitHub Actions monitoring task...")
+    print("开始执行GitHub Actions单次监控任务...")
     check_stock_status()
-    print("Monitoring task finished.")
+    print("监控任务执行完毕。")
