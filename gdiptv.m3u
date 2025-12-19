@@ -24,8 +24,6 @@ http://192.168.2.1:4022/udp/239.77.1.34:5146
 http://192.168.2.1:4022/udp/239.77.0.2:5146
 #EXTINF:-1 tvg-name="山东卫视" group-title="卫视",山东卫视 4K (AVS2)
 http://192.168.2.1:4022/udp/239.77.1.37:5146
-#EXTINF:-1 tvg-name="四川卫视" group-title="卫视",四川卫视 4K (AVS2)
-http://192.168.2.1:4022/udp/239.77.1.38:5146
 #EXTINF:-1 tvg-name="广东珠江" group-title="广东电视台",广东珠江超清
 http://192.168.2.1:4022/udp/239.77.0.114:5146
 #EXTINF:-1 tvg-name="广东新闻" group-title="广东电视台",广东新闻
@@ -214,6 +212,8 @@ http://192.168.2.1:4022/udp/239.77.0.123:5146
 http://192.168.2.1:4022/udp/239.77.0.124:5146
 #EXTINF:-1 tvg-name="贵州卫视" group-title="卫视",贵州卫视
 http://192.168.2.1:4022/udp/239.77.0.230:5146
+#EXTINF:-1 tvg-name="四川卫视" group-title="卫视",四川卫视 4K
+http://192.168.2.1:4022/udp/239.77.1.38:5146
 #EXTINF:-1 tvg-name="河南卫视" group-title="卫视",河南卫视
 http://192.168.2.1:4022/udp/239.77.0.17:5146
 #EXTINF:-1 tvg-name="云南卫视" group-title="卫视",云南卫视
