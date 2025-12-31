@@ -18,7 +18,7 @@ http://192.168.2.1:4022/udp/239.77.1.180:5146
 http://192.168.2.1:4022/udp/239.77.1.30:5146
 #EXTINF:-1 tvg-name="浙江卫视" group-title="卫视",浙江卫视 4K (AVS2)
 http://192.168.2.1:4022/udp/239.77.1.32:5146
-#EXTINF:-1 tvg-name="江苏卫视" group-title="卫视",江苏卫视 4K
+#EXTINF:-1 tvg-name="江苏卫视" group-title="卫视",江苏卫视 4K (AVS2)
 http://192.168.2.1:4022/udp/239.77.1.36:5146
 #EXTINF:-1 tvg-name="东方卫视" group-title="卫视",东方卫视 4K (AVS2)
 http://192.168.2.1:4022/udp/239.77.1.34:5146
