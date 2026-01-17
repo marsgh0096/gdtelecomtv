@@ -8,8 +8,8 @@ http://192.168.2.1:4022/udp/239.253.43.99:5146
 http://192.168.2.1:4022/udp/239.77.0.67:5146
 #EXTINF:-1 tvg-name="深圳卫视 25p" group-title="深圳电视台",深圳卫视 25p 4K
 http://192.168.2.1:4022/udp/239.77.1.14:5146
-#EXTINF:-1 tvg-name="深圳卫视" group-title="深圳电视台",深圳卫视 4K
-http://192.168.2.1:4022/udp/239.77.1.191:5146
+#EXTINF:-1 tvg-name="深圳卫视" group-title="深圳电视台",深圳卫视 4K (AVS2)
+http://192.168.2.1:4022/udp/239.77.1.24:5146
 #EXTINF:-1 tvg-name="CCTV4K" group-title="央视",CCTV4K-25P
 http://192.168.2.1:4022/udp/239.77.0.194:5146
 #EXTINF:-1 tvg-name="CCTV-4K" group-title="央视",CCTV-4K 4K
@@ -18,7 +18,7 @@ http://192.168.2.1:4022/udp/239.77.1.180:5146
 http://192.168.2.1:4022/udp/239.77.1.30:5146
 #EXTINF:-1 tvg-name="浙江卫视" group-title="卫视",浙江卫视 4K (AVS2)
 http://192.168.2.1:4022/udp/239.77.1.32:5146
-#EXTINF:-1 tvg-name="江苏卫视" group-title="卫视",江苏卫视 4K
+#EXTINF:-1 tvg-name="江苏卫视" group-title="卫视",江苏卫视 4K (AVS2)
 http://192.168.2.1:4022/udp/239.77.1.36:5146
 #EXTINF:-1 tvg-name="东方卫视" group-title="卫视",东方卫视 4K (AVS2)
 http://192.168.2.1:4022/udp/239.77.1.34:5146
