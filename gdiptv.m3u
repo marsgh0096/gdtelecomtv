@@ -1,20 +1,20 @@
-#EXTINF:-1 tvg-name="广东卫视" group-title="广东电视台",广东卫视超清
-http://192.168.2.1:4022/udp/239.77.0.166:5146
+#EXTINF:-1 tvg-name="广东卫视" group-title="广东电视台",广东卫视 4K (AVS2)
+http://192.168.2.1:4022/udp/239.77.1.96:5146
 #EXTINF:-1 tvg-name="广东4K" group-title="广东电视台",广东4K超高清
 http://192.168.2.1:4022/udp/239.77.0.244:5146
 #EXTINF:-1 tvg-name="深圳卫视4k超" group-title="深圳电视台",深圳卫视4k超高清
 http://192.168.2.1:4022/udp/239.77.0.67:5146
 #EXTINF:-1 tvg-name="深圳卫视 25p" group-title="深圳电视台",深圳卫视 25p 4K
 http://192.168.2.1:4022/udp/239.77.1.14:5146
-#EXTINF:-1 tvg-name="深圳卫视" group-title="深圳电视台",深圳卫视 4K (AVS2)
-http://192.168.2.1:4022/udp/239.77.1.24:5146
+#EXTINF:-1 tvg-name="深圳卫视" group-title="深圳电视台",深圳卫视 4K
+http://192.168.2.1:4022/udp/239.77.1.191:5146
 #EXTINF:-1 tvg-name="CCTV4K" group-title="央视",CCTV4K-25P
 http://192.168.2.1:4022/udp/239.77.0.194:5146
 #EXTINF:-1 tvg-name="CCTV-4K" group-title="央视",CCTV-4K 4K
 http://192.168.2.1:4022/udp/239.77.1.180:5146
 #EXTINF:-1 tvg-name="湖南卫视" group-title="卫视",湖南卫视 4K (AVS2)
 http://192.168.2.1:4022/udp/239.77.1.30:5146
-#EXTINF:-1 tvg-name="浙江卫视" group-title="卫视",浙江卫视 4K
+#EXTINF:-1 tvg-name="浙江卫视" group-title="卫视",浙江卫视 4K (AVS2)
 http://192.168.2.1:4022/udp/239.77.1.32:5146
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视",江苏卫视 4K (AVS2)
 http://192.168.2.1:4022/udp/239.77.1.36:5146
