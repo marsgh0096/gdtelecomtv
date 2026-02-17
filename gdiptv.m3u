@@ -1,5 +1,5 @@
 #EXTINF:-1 tvg-name="广东卫视" group-title="广东电视台",广东卫视 4K (AVS2)
-http://192.168.2.1:4022/udp/239.77.1.16:5146
+http://192.168.2.1:4022/udp/239.77.1.96:5146
 #EXTINF:-1 tvg-name="广东4K" group-title="广东电视台",广东4K超高清
 http://192.168.2.1:4022/udp/239.77.0.244:5146
 #EXTINF:-1 tvg-name="南国都市" group-title="广州电视台",南国都市4K
@@ -22,7 +22,7 @@ http://192.168.2.1:4022/udp/239.77.1.30:5146
 http://192.168.2.1:4022/udp/239.77.1.32:5146
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视",江苏卫视 4K (AVS2)
 http://192.168.2.1:4022/udp/239.77.1.36:5146
-#EXTINF:-1 tvg-name="东方卫视" group-title="卫视",东方卫视 4K (AVS2)
+#EXTINF:-1 tvg-name="东方卫视" group-title="卫视",东方卫视 4K
 http://192.168.2.1:4022/udp/239.77.1.34:5146
 #EXTINF:-1 tvg-name="北京卫视" group-title="卫视",北京卫视4K超高清
 http://192.168.2.1:4022/udp/239.77.0.2:5146
